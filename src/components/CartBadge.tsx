@@ -2,8 +2,8 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useContext } from "react";
 import { Text, StyleSheet } from 'react-native';
 import { TouchableOpacity, View } from "react-native";
-import CartContext from "../core/context/CartContext";
 import { Feather } from "@expo/vector-icons";
+import CartContext from "../features/Cart/context/CartContext";
 
 const CartBadge = () => {
     const navigation = useNavigation();

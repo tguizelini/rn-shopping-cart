@@ -1,30 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import Product from '../core/types/Product';
-import ProductItem from '../components/ProductItem';
-import useApi from '../core/hooks/useApi';
-import HttpMethod from '../core/hooks/useApi/httpMethod.enum';
-import HttpStatus from '../core/hooks/useApi/httpStatus.enum';
+import Product from '../domain/Product';
+import ProductItem from '../../../components/ProductItem';
+import useApi from '../../../core/hooks/useApi';
+import HttpMethod from '../../../core/hooks/useApi/httpMethod.enum';
+import HttpStatus from '../../../core/hooks/useApi/httpStatus.enum';
 import { ActivityIndicator } from 'react-native-paper';
-import CountryItemResponse from '../core/types/CountryApi';
-import Button from '../components/Button';
+import CountryItemResponse from '../domain/CountryApiResponse';
+import Button from '../../../components/Button';
+import Endpoints from '../data/endpoints';
 
 const ProductList = () => {
+  
   const api = useApi<CountryItemResponse[]>(
-    "https://restcountries.com/v3.1/all",
+    Endpoints.all,
     HttpMethod.GET
   )
 
   const [products, setProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const fetchData = async () => {
     const response = await api.callApi();
 
-    if (api.success) {
+    if (response.status == HttpStatus.SUCCESS) {
       const list: Product[] = [];
  
       response.data?.forEach(i => {
@@ -41,6 +39,10 @@ const ProductList = () => {
     }
   }
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   if (api.loading) {
     return (
       <View style={styles.loadingContainer}>
@@ -51,8 +53,6 @@ const ProductList = () => {
   }
 
   if (api.error != null) {
-    console.log("API Error:", error);
-
     return (
       <View style={styles.loadingContainer}>
         <Text style={styles.paddingContainer}>Ops! Ocorreu um problema ao buscar dados.</Text>

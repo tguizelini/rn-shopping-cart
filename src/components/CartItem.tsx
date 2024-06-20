@@ -1,8 +1,8 @@
 import { Text, Image, View, StyleSheet, TouchableOpacity } from "react-native";
-import Product from "../core/types/Product";
+import Product from "../features/Product/domain/Product";
 import React, { useContext } from "react";
-import CartContext from "../core/context/CartContext";
 import { Feather } from '@expo/vector-icons';
+import CartContext from "../features/Cart/context/CartContext";
 
 interface CartItemProps {
     item: Product;

@@ -1,27 +1,30 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import ProductList from "../../screens/ProductList";
 import CartBadge from "../../components/CartBadge";
-import Cart from "../../screens/Cart";
+import ProductModule from "../../features/Product/routes";
+import CartModule from "../../features/Cart/routes";
 
 const Stack = createNativeStackNavigator();
 
 const StackRoutes = () => {
     return (
-        <Stack.Navigator initialRouteName="home" screenOptions={{ 
-            title: '', headerShadowVisible: true
-        }}>
+        <Stack.Navigator 
+            initialRouteName={ProductModule.list.route} 
+            screenOptions={{ 
+                title: '', 
+                headerShadowVisible: true
+            }}
+        >
             <Stack.Screen
-                name={"home"}
-                component={ProductList}
+                name={ProductModule.list.route}
+                component={ProductModule.list.component}
                 options={{
                     headerRight: () => <CartBadge />,
                 }} />
 
             <Stack.Screen
-                name="cart"
-                component={Cart} 
+                name={CartModule.home.route}
+                component={CartModule.home.component} 
                 options={{
                     headerRight: () => <CartBadge />,
                 }} />

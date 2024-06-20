@@ -1,9 +1,9 @@
 import { View, StyleSheet } from "react-native";
 import { Card, Title } from "react-native-paper";
-import Product from "../core/types/Product";
+import Product from "../features/Product/domain/Product";
 import React, { useContext } from "react";
-import CartContext from "../core/context/CartContext";
 import Button, { ButtonSize, ButtonType } from "./Button";
+import CartContext from "../features/Cart/context/CartContext";
 
 interface ProductItemProps {
     item: Product;

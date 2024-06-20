@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
-import CartContext from '../core/context/CartContext';
-import CartItem from '../components/CartItem';
-import Button from '../components/Button';
+import CartContext from '../context/CartContext';
+import CartItem from '../../../components/CartItem';
+import Button from '../../../components/Button';
 
 const Cart = () => {
   const { cart, clearCart } = useContext(CartContext);

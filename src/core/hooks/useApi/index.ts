@@ -13,7 +13,7 @@ function useApi<T>(
   headers: HttpHeader[] = [],
   withAuthorization: boolean = true
 ) {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   const [responseApi, setResponseApi] = useState<HttpResponse>({
     loading: false,
@@ -26,10 +26,10 @@ function useApi<T>(
   const callApi = (reqBody?: any) => FetchData(reqBody);
 
   const FetchData = async (reqBody?: any): Promise<{
-    status: number,
+    status: number
     data: object & T | null
   }> => {
-    setResponseApi({ ...responseApi, loading: true });
+    setResponseApi({ ...responseApi, loading: true })
 
     try {
       let res: any;
@@ -94,10 +94,10 @@ function useApi<T>(
         res.status != HttpStatus.CREATED &&
         res.status != HttpStatus.SUCCESS_NO_CONTENT
       ) {
-        return onError(res.data)
+        return onError(res.data);
       }
 
-      return onSuccess(res.data)
+      return onSuccess(res.data);
     } catch (e) {
       return onError(e)
     }
